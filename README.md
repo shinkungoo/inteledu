@@ -21,7 +21,7 @@ InsCD, namely Instant Cognitive Diagnosis (Chinese: 时诊), is a highly modular
 ## 📰 News 
 - [x] [2024.7.14] InsCD toolkit v1.0 is released and available for downloading.
 
-## 🚀 Getting Start
+## 🚀 Getting Started
 ### Installation
 Git and install with pip:
 ```
@@ -53,4 +53,19 @@ test_results = ncdm.score(datahub, "test", metrics=["acc", "doa"])
 
 For more details, please refer to **[InsCD Documentation](https://sites.google.com/view/inscd-doc/home)**.
 
+
+## 🤗 Contributor
+Contributors are arranged in alphabetical order by first name. We welcome more people to participate in maintenance and improve the community of intelligent education.
+
+Junhao Shen, Mingjia Li, Shuo Liu, Xin An, Yuanhao Liu
+
+## Citation
+If this repository is helpful and can inspire you in your reseach or applications, please kindly cite as follows.
+
+### BibTex
+```
+
+```
+
+### ACM Format
 
