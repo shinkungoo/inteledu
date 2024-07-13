@@ -5,7 +5,7 @@
 
 East China Normal University
 
-<img src='docs/inscd.svg' width=500 />
+<img src='docs/inscd.svg' width=700 />
 </div>
 
 InsCD, namely Instant Cognitive Diagnosis (Chinese: 时诊), is a highly modularized python library for cognitive diagnosis in intelligent education systems. This library incorporates both traditional methods (e.g., solving IRT via statistics) and deep learning-based methods (e.g., modelling students and exercises via graph neural networks). 
@@ -26,7 +26,7 @@ InsCD, namely Instant Cognitive Diagnosis (Chinese: 时诊), is a highly modular
 Git and install with pip:
 ```
 git clone https://github.com/ECNU-ILOG/inscd.git
-cd [path of code]
+cd <path of code>
 pip install .
 ```
 or install the library from pypi
@@ -53,14 +53,35 @@ test_results = ncdm.score(datahub, "test", metrics=["acc", "doa"])
 
 For more details, please refer to **[InsCD Documentation](https://sites.google.com/view/inscd-doc/home)**.
 
+## 🛠 Incorporation
+We incoporate classical, famous and state-of-the-art methods accepted by leading journals and conferences in the field of psychology, machine learning and data mining. The reason why we call this toolkit "modulaized" is that we not only provide the "model", but also divide the model into two parts (i.e., extractor and interaction function), which enables us to design new models (e.g., extractor of Hypergraph with interaction function of KaNCD). To evaluate the model, we also provide vairous open-source datasets in online or offline scenarios.
+
+### List of Models
+|Model|Release Time|Paper|
+|-----|------------|-----|
+
+### List of Build-in Datasets
+|Dataset|Release Time|Paper|
+|-------|------------|-----|
+
+
+## 🤔 Frequent Question
+> Why I cannot download dataset via build-in datasets (e.g., `NeurIPS20` in `inscd.datahub`)?
+
+Since these datasets are saved in the  Google Driver, they may be not available in some countries and regions. You can use proxy and add the following code before using build-in datasets.
+```
+os.environ['http_proxy'] = 'http://<IP address of proxy>:<Port of proxy>'
+os.environ['https_proxy'] = 'http://<IP address of proxy>:<Port of proxy>'
+os.environ['all_proxy'] = 'socks5://<IP address of proxy>:<Port of proxy>'
+```
 
 ## 🤗 Contributor
 Contributors are arranged in alphabetical order by first name. We welcome more people to participate in maintenance and improve the community of intelligent education.
 
 Junhao Shen, Mingjia Li, Shuo Liu, Xin An, Yuanhao Liu
 
-## Citation
-If this repository is helpful and can inspire you in your reseach or applications, please kindly cite as follows.
+## 🗞 Citation
+If this toolkit is helpful and can inspire you in your reseach or applications, please kindly cite as follows.
 
 ### BibTex
 ```
