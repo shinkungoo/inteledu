@@ -5,5 +5,5 @@
 
 East China Normal University
 
-<img src='' />
+<img src='docs/inscd.svg' width=500 />
 </div>
