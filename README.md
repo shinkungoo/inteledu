@@ -53,20 +53,30 @@ test_results = ncdm.score(datahub, "test", metrics=["acc", "doa"])
 
 For more details, please refer to **[InsCD Documentation](https://sites.google.com/view/inscd-doc/home)**.
 
-## 🛠 Incorporation
+## 🛠 Implementation
 We incoporate classical, famous and state-of-the-art methods accepted by leading journals and conferences in the field of psychology, machine learning and data mining. The reason why we call this toolkit "modulaized" is that we not only provide the "model", but also divide the model into two parts (i.e., extractor and interaction function), which enables us to design new models (e.g., extractor of Hypergraph with interaction function of KaNCD). To evaluate the model, we also provide vairous open-source datasets in online or offline scenarios.
 
 ### List of Models
 |Model|Release Time|Paper|
 |-----|------------|-----|
+|Item Response Theory (IRT)|||
+|Multidimentional Item Response Theory (MIRT)|||
+|Deterministic Input, Noisy "And" Gate (DINA)|||
+|Neural Cognitive Diagnosis Model (NCDM)|||
+|Item Response Ranking (IRR)|||
+|Knowledge-association Neural Cognitive Diagnosis (KaNCD)|||
+|Knowledge-sensed Cognitive Diagnosis Model (KSCD)|||
+|Q-augmented Causal Cognitive Diagnosis Model (QCCDM)|||
+|Relation Map-driven Cognitive Diagnosis Model (RCD)|||
+|Hypergraph Cognitive Diganosis Model (HyperCDM)|||
 
 ### List of Build-in Datasets
 |Dataset|Release Time|Paper|
 |-------|------------|-----|
+||||
 
-
-## 🤔 Frequent Question
-> Why I cannot download dataset via build-in datasets (e.g., `NeurIPS20` in `inscd.datahub`)?
+## 🤔 Frequent Asked Questions
+> Why I cannot download the dataset when using build-in datasets class (e.g., `NeurIPS20` in `inscd.datahub`)?
 
 Since these datasets are saved in the  Google Driver, they may be not available in some countries and regions. You can use proxy and add the following code before using build-in datasets.
 ```
