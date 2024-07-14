@@ -54,22 +54,23 @@ test_results = ncdm.score(datahub, "test", metrics=["acc", "doa"])
 For more details, please refer to **[InsCD Documentation](https://sites.google.com/view/inscd-doc/home)**.
 
 ## 🛠 Implementation
-We incoporate classical, famous and state-of-the-art methods accepted by leading journals and conferences in the field of psychology, machine learning and data mining. The reason why we call this toolkit "modulaized" is that we not only provide the "model", but also divide the model into two parts (i.e., extractor and interaction function), which enables us to design new models (e.g., extractor of Hypergraph with interaction function of KaNCD). To evaluate the model, we also provide vairous open-source datasets in online or offline scenarios.
+We incoporate classical, famous and state-of-the-art methods published or accepted by leading journals and conferences in the field of psychometric, machine learning and data mining. The reason why we call this toolkit "modulaized" is that we not only provide the "model", but also divide the model into two parts (i.e., extractor and interaction function), which enables us to design new models (e.g., extractor of Hypergraph with interaction function of KaNCD). To evaluate the model, we also provide vairous open-source datasets in online or offline scenarios.
 
 ### List of Models
 |Model|Release|Paper|
 |-----|------------|-----|
-|Item Response Theory (IRT)|1952|Frederic Lord. A Theory of Test Scores.|
-|Multidimentional Item Response Theory (MIRT)|2009||
-|Deterministic Input, Noisy "And" Gate (DINA)|||
-|Neural Cognitive Diagnosis Model (NCDM)|||
-|Item Response Ranking (IRR)|||
-|Knowledge-association Neural Cognitive Diagnosis (KaNCD)|||
-|Knowledge-sensed Cognitive Diagnosis Model (KSCD)|||
-|Q-augmented Causal Cognitive Diagnosis Model (QCCDM)|||
-|Relation Map-driven Cognitive Diagnosis Model (RCD)|||
-|Hypergraph Cognitive Diganosis Model (HyperCDM)|||
-|Oversmoothing-Resistant Cognitive Diagnosis Framework (ORCDF)|||
+|Item Response Theory (IRT)|1952|Frederic Lord. A Theory of Test Scores. _Psychometric Monographs_.|
+|Deterministic Input, Noisy "And" Gate (DINA)|2008|Jimmy De La Torre. An Empirically Based Method of Q-matrix Validation for the DINA Model: Development and applications. _Journal of Educational Measurement_.|
+|Multidimentional Item Response Theory (MIRT)|2009|Mark D. Reckase. _Multidimensional Item Response Theory Models_.|
+|Neural Cognitive Diagnosis Model (NCDM)|2020|Fei Wang et al. Neural Cognitive Diagnosis for Intelligent Education Systems. _AAAI'20_.|
+|Item Response Ranking (IRR)|2021|Shiwei Tong et al. Item Response Ranking for Cognitive Diagnosis. _IJCAI'21_.|
+|Relation Map-driven Cognitive Diagnosis Model (RCD)|2021|Weibo Gao et al. RCD: Relation Map Driven Cognitive Diagnosis for Intelligent Education Systems. _SIGIR'21_|
+|Knowledge-association Neural Cognitive Diagnosis (KaNCD)|2022|Fei Wang et al. NeuralCD: A General Framework for Cognitive Diagnosis. _TKDE_.|
+|Knowledge-sensed Cognitive Diagnosis Model (KSCD)|2022|Haiping Ma et al. Knowledge-Sensed Cognitive Diagnosis for Intelligent Education Platforms. _CIKM'22_.|
+|Q-augmented Causal Cognitive Diagnosis Model (QCCDM)|2023|Shuo Liu et al. QCCDM: A Q-Augmented Causal Cognitive Diagnosis Model for Student Learning. _ECAI'23_.|
+|Symbolic Cognitive Diagnosis Model (SCDM)|2024|Junhao Shen et al. Symbolic Cognitive Diagnosis via Hybrid Optimization for Intelligent Education Systems. _AAAI'24_.|
+|Hypergraph Cognitive Diganosis Model (HyperCDM)|2024|Junhao Shen et al. Capturing Homogeneous Influence among Students: Hypergraph Cognitive Diagnosis for Intelligent Education Systems. _KDD'24_.|
+|Oversmoothing-Resistant Cognitive Diagnosis Framework (ORCDF)|2024|Shuo Liu et al. ORCDF: An Oversmoothing-Resistant Cognitive Diagnosis Framework for Student Learning in Online Education Systems. _KDD'24_.|
 
 ### List of Build-in Datasets
 |Dataset|Release Time|Paper|
