@@ -57,10 +57,10 @@ For more details, please refer to **[InsCD Documentation](https://sites.google.c
 We incoporate classical, famous and state-of-the-art methods accepted by leading journals and conferences in the field of psychology, machine learning and data mining. The reason why we call this toolkit "modulaized" is that we not only provide the "model", but also divide the model into two parts (i.e., extractor and interaction function), which enables us to design new models (e.g., extractor of Hypergraph with interaction function of KaNCD). To evaluate the model, we also provide vairous open-source datasets in online or offline scenarios.
 
 ### List of Models
-|Model|Release Time|Paper|
+|Model|Release|Paper|
 |-----|------------|-----|
-|Item Response Theory (IRT)|||
-|Multidimentional Item Response Theory (MIRT)|||
+|Item Response Theory (IRT)|1952|Frederic Lord. A Theory of Test Scores.|
+|Multidimentional Item Response Theory (MIRT)|2009||
 |Deterministic Input, Noisy "And" Gate (DINA)|||
 |Neural Cognitive Diagnosis Model (NCDM)|||
 |Item Response Ranking (IRR)|||
@@ -69,6 +69,7 @@ We incoporate classical, famous and state-of-the-art methods accepted by leading
 |Q-augmented Causal Cognitive Diagnosis Model (QCCDM)|||
 |Relation Map-driven Cognitive Diagnosis Model (RCD)|||
 |Hypergraph Cognitive Diganosis Model (HyperCDM)|||
+|Oversmoothing-Resistant Cognitive Diagnosis Framework (ORCDF)|||
 
 ### List of Build-in Datasets
 |Dataset|Release Time|Paper|
