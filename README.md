@@ -69,6 +69,7 @@ We incoporate classical, famous and state-of-the-art methods published or accept
 |Knowledge-association Neural Cognitive Diagnosis (KaNCD)|2022|Fei Wang et al. NeuralCD: A General Framework for Cognitive Diagnosis. _TKDE_.|
 |Knowledge-sensed Cognitive Diagnosis Model (KSCD)|2022|Haiping Ma et al. Knowledge-Sensed Cognitive Diagnosis for Intelligent Education Platforms. _CIKM'22_.|
 |Q-augmented Causal Cognitive Diagnosis Model (QCCDM)|2023|Shuo Liu et al. QCCDM: A Q-Augmented Causal Cognitive Diagnosis Model for Student Learning. _ECAI'23_.|
+|Self-supervised Cognitive Diagnosis Model (SCD)|2023|Shanshan Wang et al. Self-Supervised Graph Learning for Long-Tailed Cognitive Diagnosis. _AAAI'23_.|
 |Symbolic Cognitive Diagnosis Model (SCDM)|2024|Junhao Shen et al. Symbolic Cognitive Diagnosis via Hybrid Optimization for Intelligent Education Systems. _AAAI'24_.|
 |Hypergraph Cognitive Diganosis Model (HyperCDM)|2024|Junhao Shen et al. Capturing Homogeneous Influence among Students: Hypergraph Cognitive Diagnosis for Intelligent Education Systems. _KDD'24_.|
 |Oversmoothing-Resistant Cognitive Diagnosis Framework (ORCDF)|2024|Shuo Liu et al. ORCDF: An Oversmoothing-Resistant Cognitive Diagnosis Framework for Student Learning in Online Education Systems. _KDD'24_.|
