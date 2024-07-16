@@ -13,7 +13,7 @@ InsCD, namely Instant Cognitive Diagnosis (Chinese: 时诊), is a highly modular
 <div align='center'>
 
 <a href=''><img src='https://img.shields.io/badge/pypi-1.1.0-orange'></a> 
-<a href=''><img src='https://img.shields.io/badge/Project-Page-brown'></a>
+<a href='https://sites.google.com/view/inscd-doc/home'><img src='https://img.shields.io/badge/Project-Page-brown'></a>
 <a href=''><img src='https://img.shields.io/badge/Paper-PDF-yellow'></a>
 
 </div>
