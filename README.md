@@ -78,18 +78,14 @@ We incoporate classical, famous and state-of-the-art methods published or accept
 |Dataset|Release|Source|
 |-------|-------|------|
 |`inscd.datahub.Assist17`|2018|https://sites.google.com/view/assistmentsdatamining/dataset|
-|`inscd.datahub.EdNet1`|2020|https://arxiv.org/abs/1912.03072|
 |`inscd.datahub.FracSub`|2015|http://staff.ustc.edu.cn/%7Eqiliuql/data/math2015.rar|
 |`inscd.datahub.Junyi734`|2015|https://www.educationaldatamining.org/EDM2015/proceedings/short532-535.pdf|
 |`inscd.datahub.Math1`|2015|http://staff.ustc.edu.cn/%7Eqiliuql/data/math2015.rar|
 |`inscd.datahub.Math2`|2015|http://staff.ustc.edu.cn/%7Eqiliuql/data/math2015.rar|
 |`inscd.datahub.Matmat`|2019|https://github.com/adaptive-learning/matmat-web|
 |`inscd.datahub.NeurIPS20`|2020|https://eedi.com/projects/neurips-education-challenge|
-|`inscd.datahub.SLPBIO`|2021|https://aic-fe.bnu.edu.cn/en/data/index.html|
-|`inscd.datahub.SLPCHI`|2021|https://aic-fe.bnu.edu.cn/en/data/index.html|
-|`inscd.datahub.SLPENG`|2021|https://aic-fe.bnu.edu.cn/en/data/index.html|
-|`inscd.datahub.SLPGEO`|2021|https://aic-fe.bnu.edu.cn/en/data/index.html|
-|`inscd.datahub.XES3G5M`|2023|https://github.com/ai4ed/XES3G5M|
+
+Note that we preprocess these datasets and filter invalid response logs. We will continuously update preprocessed datasets to foster the community.
 
 ## 🤔 Frequent Asked Questions
 > Why I cannot download the dataset when using build-in datasets class (e.g., `NeurIPS20` in `inscd.datahub`)?
