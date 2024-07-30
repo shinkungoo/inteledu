@@ -1,11 +1,9 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-
-from collections import OrderedDict
 
 from ._util import none_neg_clipper
 from .._base import _InteractionFunction
+
 
 class NoneNegClipper(object):
     def __init__(self):
@@ -16,6 +14,8 @@ class NoneNegClipper(object):
             w = module.weight.data
             a = torch.relu(torch.neg(w))
             w.add_(a)
+
+
 class RCD_IF(_InteractionFunction, nn.Module):
     def __init__(self, knowledge_num: int, device, dtype):
         super().__init__()
@@ -23,8 +23,10 @@ class RCD_IF(_InteractionFunction, nn.Module):
         self.device = device
         self.dtype = dtype
 
-        self.prednet_full1 = nn.Linear(2 * self.knowledge_num, self.knowledge_num, bias=False, dtype=dtype).to(self.device)
-        self.prednet_full2 = nn.Linear(2 * self.knowledge_num, self.knowledge_num, bias=False, dtype=dtype).to(self.device)
+        self.prednet_full1 = nn.Linear(2 * self.knowledge_num, self.knowledge_num, bias=False, dtype=dtype).to(
+            self.device)
+        self.prednet_full2 = nn.Linear(2 * self.knowledge_num, self.knowledge_num, bias=False, dtype=dtype).to(
+            self.device)
         self.prednet_full3 = nn.Linear(1 * self.knowledge_num, 1, dtype=dtype).to(self.device)
 
         for name, param in self.named_parameters():
@@ -50,7 +52,6 @@ class RCD_IF(_InteractionFunction, nn.Module):
         return o
 
     def monotonicity(self):
-        clipper = NoneNegClipper()
-        self.prednet_full1.apply(clipper)
-        self.prednet_full2.apply(clipper)
-        self.prednet_full3.apply(clipper)
+        self.prednet_full1.apply(none_neg_clipper)
+        self.prednet_full2.apply(none_neg_clipper)
+        self.prednet_full3.apply(none_neg_clipper)

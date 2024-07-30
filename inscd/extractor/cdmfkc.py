@@ -3,7 +3,7 @@ import torch.nn as nn
 from .._base import _Extractor
 
 
-class Default(_Extractor, nn.Module):
+class CDMFKC_EX(_Extractor, nn.Module):
     def __init__(self, student_num: int, exercise_num: int, knowledge_num: int, device, dtype, latent_dim=None):
         super().__init__()
         self.student_num = student_num
@@ -22,12 +22,13 @@ class Default(_Extractor, nn.Module):
         self.__knowledge_emb = nn.Embedding(self.knowledge_num, self.latent_dim, dtype=self.dtype).to(self.device)
         self.__diff_emb = nn.Embedding(self.exercise_num, self.latent_dim, dtype=self.dtype).to(self.device)
         self.__disc_emb = nn.Embedding(self.exercise_num, 1, dtype=self.dtype).to(self.device)
-
+        self.__knowledge_impact_emb = nn.Embedding(self.exercise_num, self.latent_dim).to(self.device)
         self.__emb_map = {
             "mastery": self.__student_emb.weight,
             "diff": self.__diff_emb.weight,
             "disc": self.__disc_emb.weight,
-            "knowledge": self.__knowledge_emb.weight
+            "knowledge": self.__knowledge_emb.weight,
+            "knowledge_impact": self.__knowledge_impact_emb.weight
         }
         self.apply(self.initialize_weights)
 
@@ -40,8 +41,9 @@ class Default(_Extractor, nn.Module):
         student_ts = self.__student_emb(student_id)
         diff_ts = self.__diff_emb(exercise_id)
         disc_ts = self.__disc_emb(exercise_id)
+        knowledge_impact_ts = self.__knowledge_impact_emb(exercise_id)
         knowledge_ts = self.__knowledge_emb.weight
-        return student_ts, diff_ts, disc_ts, knowledge_ts
+        return student_ts, diff_ts, disc_ts, knowledge_ts, {'knowledge_impact': knowledge_impact_ts}
 
     def __getitem__(self, item):
         if item not in self.__emb_map.keys():
@@ -50,5 +52,6 @@ class Default(_Extractor, nn.Module):
         self.__emb_map["diff"] = self.__diff_emb.weight
         self.__emb_map["disc"] = self.__disc_emb.weight
         self.__emb_map["knowledge"] = self.__knowledge_emb.weight
+        self.__emb_map["knowledge_impact"] = self.__knowledge_impact_emb.weight
         return self.__emb_map[item]
 

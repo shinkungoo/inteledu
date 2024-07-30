@@ -1,10 +1,6 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
-from collections import OrderedDict
-
-from ._util import none_neg_clipper
 from .._base import _InteractionFunction
 
 
@@ -23,7 +19,4 @@ class MF_IF(_InteractionFunction, nn.Module):
         return input_x.view(-1)
 
     def transform(self, mastery, knowledge):
-        return F.sigmoid(mastery)
-
-    def monotonicity(self):
-        return
+        return torch.sigmoid(mastery)

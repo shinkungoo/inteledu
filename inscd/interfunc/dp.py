@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 from collections import OrderedDict
 
@@ -13,14 +12,14 @@ def dot_product(A, B):
 
 
 def polynomial_kernel_dot_product(A, B, **kwargs):
-    constant = kwargs.get('constant', 1.0)
+    constant = kwargs.get('constant', 0.1)
     degree = kwargs.get('degree', 2.0)
-    return F.sigmoid((torch.matmul(A, B.T) + constant) ** degree)
+    return torch.sigmoid((torch.matmul(A, B.T) + constant) ** degree)
 
 
 def rbf_kernel_dot_product(A, B, **kwargs):
     sigma = kwargs.get('sigma', 0.1)
-    return F.sigmoid(torch.exp(-torch.square(torch.norm(A[:, None] - B, dim=2)) / (2 * sigma ** 2)))
+    return torch.sigmoid(torch.exp(-torch.square(torch.norm(A[:, None] - B, dim=2)) / (2 * sigma ** 2)))
 
 
 class DP_IF(_InteractionFunction, nn.Module):
@@ -33,7 +32,6 @@ class DP_IF(_InteractionFunction, nn.Module):
         self.dtype = dtype
         self.kernel = kernel
         self.transform_kernel = self.get_kernel()
-
         layers = OrderedDict()
         for idx, hidden_dim in enumerate(self.hidden_dims):
             if idx == 0:
@@ -83,11 +81,13 @@ class DP_IF(_InteractionFunction, nn.Module):
         disc_ts = kwargs["disc_ts"]
         knowledge_ts = kwargs["knowledge_ts"]
         q_mask = kwargs["q_mask"]
-        input_x = torch.sigmoid(disc_ts) * (self.transform(student_ts, knowledge_ts) - self.transform(diff_ts, knowledge_ts)) * q_mask
+        input_x = torch.sigmoid(disc_ts) * (
+                self.transform_kernel(student_ts, knowledge_ts) - self.transform_kernel(diff_ts, knowledge_ts)
+        ) * q_mask
         return self.mlp(input_x).view(-1)
 
     def transform(self, mastery, knowledge):
-        return F.sigmoid(self.transform_kernel(mastery, knowledge))
+        return torch.sigmoid(self.transform_kernel(mastery, knowledge))
 
     def monotonicity(self):
         for layer in self.mlp:

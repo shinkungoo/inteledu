@@ -7,18 +7,20 @@ from ._util import none_neg_clipper
 from .._base import _InteractionFunction
 
 
-class KANCD_IF(_InteractionFunction, nn.Module):
-    def __init__(self, knowledge_num: int, latent_dim: int, hidden_dims: list, dropout, device, dtype):
+class CDMFKC_IF(_InteractionFunction, nn.Module):
+    def __init__(self, g_impact_a, g_impact_b, knowledge_num: int, hidden_dims: list, dropout, device,
+                 dtype, latent_dim=None):
         super().__init__()
         self.knowledge_num = knowledge_num
-        self.latent_dim = latent_dim
+        self.g_impact_a = g_impact_a
+        self.g_impact_b = g_impact_b
         self.hidden_dims = hidden_dims
         self.dropout = dropout
         self.device = device
         self.dtype = dtype
-
-        self.k_diff_full = nn.Linear(self.latent_dim, 1, dtype=dtype).to(self.device)
-        self.stat_full = nn.Linear(self.latent_dim, 1, dtype=dtype).to(self.device)
+        self.latent_dim = latent_dim
+        if latent_dim is not None:
+            self.transform_impact = nn.Linear(latent_dim, knowledge_num, dtype=dtype).to(self.device)
 
         layers = OrderedDict()
         for idx, hidden_dim in enumerate(self.hidden_dims):
@@ -57,27 +59,19 @@ class KANCD_IF(_InteractionFunction, nn.Module):
         student_ts = kwargs["student_ts"]
         diff_ts = kwargs["diff_ts"]
         disc_ts = kwargs["disc_ts"]
-        knowledge_ts = kwargs['knowledge_ts']
         q_mask = kwargs["q_mask"]
+        if self.latent_dim is not None:
+            h_impact = self.transform_impact(torch.sigmoid(kwargs['other']['knowledge_impact']))
+        else:
+            h_impact = torch.sigmoid(kwargs['other']['knowledge_impact'])
 
-        batch, dim = student_ts.size()
-        stu_emb = student_ts.view(batch, 1, dim).repeat(1, self.knowledge_num, 1)
-        knowledge_emb = knowledge_ts.repeat(batch, 1).view(batch, self.knowledge_num, -1)
-        exer_emb = diff_ts.view(batch, 1, dim).repeat(1, self.knowledge_num, 1)
-        input_x = torch.sigmoid(disc_ts) * (torch.sigmoid(self.stat_full(stu_emb * knowledge_emb)).view(batch, -1)
-                                            - torch.sigmoid(self.k_diff_full(exer_emb * knowledge_emb)).view(batch, -1)) * q_mask
+        g_impact = torch.sigmoid(self.g_impact_a * h_impact +
+                                 self.g_impact_b * torch.sigmoid(diff_ts) * torch.sigmoid(disc_ts))
+        input_x = torch.sigmoid(disc_ts) * (torch.sigmoid(student_ts) + g_impact - torch.sigmoid(diff_ts)) * q_mask
         return self.mlp(input_x).view(-1)
 
     def transform(self, mastery, knowledge):
-        self.eval()
-        blocks = torch.split(torch.arange(mastery.shape[0]).to(device=self.device), 5)
-        mas = []
-        for block in blocks:
-            batch, dim = mastery[block].size()
-            stu_emb = mastery[block].view(batch, 1, dim).repeat(1, self.knowledge_num, 1)
-            knowledge_emb = knowledge.repeat(batch, 1).view(batch, self.knowledge_num, -1)
-            mas.append(torch.sigmoid(self.stat_full(stu_emb * knowledge_emb)).view(batch, -1))
-        return torch.vstack(mas)
+        return torch.sigmoid(mastery)
 
     def monotonicity(self):
         for layer in self.mlp:

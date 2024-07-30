@@ -8,6 +8,7 @@ class _Listener:
         """
         self.__collector = print
         self.__percentage = True
+        self.__valid = True
         self.__precision = 2
 
     def update(self, collector):
@@ -20,8 +21,11 @@ class _Listener:
     def reset(self):
         self.__collector = print
 
+    def activate(self):
+        self.__valid = True
+
     def silence(self):
-        self.__collector = None
+        self.__valid = False
 
     def __format(self, result):
         for key, value in result.items():
@@ -31,7 +35,7 @@ class _Listener:
     def __call__(self, func):
         def wrapper(*args, **kwargs):
             result = self.__format(func(*args, **kwargs))
-            if self.__collector is not None:
+            if self.__valid is True:
                 self.__collector(result)
             return result
         return wrapper

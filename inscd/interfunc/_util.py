@@ -1,4 +1,6 @@
 import torch
+
+
 class _NoneNegClipper(object):
     def __init__(self):
         super(_NoneNegClipper, self).__init__()
@@ -8,7 +10,6 @@ class _NoneNegClipper(object):
             w = module.weight.data
             a = torch.relu(torch.neg(w))
             w.add_(a)
-
 
 
 none_neg_clipper = _NoneNegClipper()

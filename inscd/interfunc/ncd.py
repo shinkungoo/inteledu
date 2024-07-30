@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 from collections import OrderedDict
 
@@ -59,7 +58,7 @@ class NCD_IF(_InteractionFunction, nn.Module):
         return self.mlp(input_x).view(-1)
 
     def transform(self, mastery, knowledge):
-        return F.sigmoid(mastery)
+        return torch.sigmoid(mastery)
 
     def monotonicity(self):
         for layer in self.mlp:

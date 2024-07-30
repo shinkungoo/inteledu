@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from .._base import _Extractor
 
 
-class LIGHTGCN_Extractor(_Extractor, nn.Module):
+class LightGCN_EX(_Extractor, nn.Module):
     def __init__(self, student_num: int, exercise_num: int, knowledge_num: int, latent_dim: int, device,
                  dtype, gcn_layers=3, keep_prob=0.9):
         super().__init__()
@@ -48,7 +48,7 @@ class LIGHTGCN_Extractor(_Extractor, nn.Module):
             random_index = random_index.int().bool()
             index = index[random_index]
             values = values[random_index] / keep_prob
-            g = torch.sparse.DoubleTensor(index.t(), values, size)
+            g = torch.sparse.Tensor(index.t(), values, size, dtype=self.dtype)
             return g
         else:
             return graph

@@ -96,9 +96,9 @@ class Fusion(nn.Module):
         return kn_emb, exer_emb, all_stu_emb
 
 
-class RCD_Extractor(_Extractor, nn.Module):
-    def __init__(self, student_num: int, exercise_num: int, knowledge_num: int, device,
-                 dtype, gcn_layers=3):
+class RCD_EX(_Extractor, nn.Module):
+    def __init__(self, student_num: int, exercise_num: int, knowledge_num: int, latent_dim: int, device,
+                 dtype, gcn_layers=3, if_type='rcd'):
         super().__init__()
         self.student_num = student_num
         self.exercise_num = exercise_num
@@ -107,10 +107,12 @@ class RCD_Extractor(_Extractor, nn.Module):
         self.device = device
         self.dtype = dtype
         self.gcn_layers = gcn_layers
+        self.if_type = if_type
+        self.latent_dim = latent_dim
 
-        self.__student_emb = nn.Embedding(self.student_num, self.knowledge_num, dtype=self.dtype).to(self.device)
-        self.__knowledge_emb = nn.Embedding(self.knowledge_num, self.knowledge_num, dtype=self.dtype).to(self.device)
-        self.__exercise_emb = nn.Embedding(self.exercise_num, self.knowledge_num, dtype=self.dtype).to(self.device)
+        self.__student_emb = nn.Embedding(self.student_num, latent_dim, dtype=self.dtype).to(self.device)
+        self.__knowledge_emb = nn.Embedding(self.knowledge_num, latent_dim, dtype=self.dtype).to(self.device)
+        self.__exercise_emb = nn.Embedding(self.exercise_num, latent_dim, dtype=self.dtype).to(self.device)
         self.__disc_emb = nn.Embedding(self.exercise_num, 1, dtype=self.dtype).to(self.device)
         self.__emb_map = {
             "mastery": self.__student_emb.weight,
@@ -135,8 +137,8 @@ class RCD_Extractor(_Extractor, nn.Module):
         self.e_from_k = self.local_map['e_from_k'].to(self.device)
         self.s_from_e = self.local_map['s_from_e'].to(self.device)
         self.e_from_s = self.local_map['e_from_s'].to(self.device)
-        self.FusionLayer1 = Fusion(self.student_num, self.exercise_num, self.knowledge_num, self.local_map, self.device, self.dtype)
-        self.FusionLayer2 = Fusion(self.student_num, self.exercise_num, self.knowledge_num, self.local_map, self.device, self.dtype)
+        self.FusionLayer1 = Fusion(self.student_num, self.exercise_num, self.latent_dim, self.local_map, self.device, self.dtype)
+        self.FusionLayer2 = Fusion(self.student_num, self.exercise_num, self.latent_dim, self.local_map, self.device, self.dtype)
 
     def __common_forward(self):
         all_stu_emb = self.__student_emb(self.stu_index).to(self.device)
@@ -151,36 +153,52 @@ class RCD_Extractor(_Extractor, nn.Module):
     def extract(self, student_id, exercise_id, q_mask):
         stu_forward, exer_forward, knows_forward = self.__common_forward()
         batch_stu_emb = stu_forward[student_id]
-        batch_stu_ts = batch_stu_emb.repeat(1, batch_stu_emb.shape[1]).reshape(batch_stu_emb.shape[0],
+        batch_exer_emb = exer_forward[exercise_id]
+        disc_ts = self.__disc_emb(exercise_id)
+
+        if self.if_type == 'rcd':
+            batch_stu_ts = batch_stu_emb.repeat(1, batch_stu_emb.shape[1]).reshape(batch_stu_emb.shape[0],
                                                                                    batch_stu_emb.shape[1],
                                                                                    batch_stu_emb.shape[1])
 
-        # get batch exercise data
-        batch_exer_emb = exer_forward[exercise_id]
-        batch_exer_ts = batch_exer_emb.repeat(1, batch_exer_emb.shape[1]).reshape(batch_exer_emb.shape[0],
+            # get batch exercise data
+            batch_exer_ts = batch_exer_emb.repeat(1, batch_exer_emb.shape[1]).reshape(batch_exer_emb.shape[0],
                                                                                       batch_exer_emb.shape[1],
                                                                                       batch_exer_emb.shape[1])
 
-        # get batch knowledge concept data
-        knowledge_ts = knows_forward.repeat(batch_stu_emb.shape[0], 1).reshape(batch_stu_emb.shape[0], knows_forward.shape[0],
-                                                                      knows_forward.shape[1])
+            # get batch knowledge concept data
+            knowledge_ts = knows_forward.repeat(batch_stu_emb.shape[0], 1).reshape(batch_stu_emb.shape[0],
+                                                                                   knows_forward.shape[0],
+                                                                                   knows_forward.shape[1])
+        else:
+            batch_stu_ts = batch_stu_emb
+            batch_exer_ts = batch_exer_emb
+            knowledge_ts = knows_forward
 
-        disc_ts = self.__disc_emb(exercise_id)
         return batch_stu_ts, batch_exer_ts, disc_ts, knowledge_ts
 
     def __getitem__(self, item):
         if item not in self.__emb_map.keys():
             raise ValueError("We can only detach {} from embeddings.".format(self.__emb_map.keys()))
         stu_forward, exer_forward, knows_forward = self.__common_forward()
-        student_ts = stu_forward.repeat(1, stu_forward.shape[1]).reshape(stu_forward.shape[0],
+        if self.if_type == 'rcd':
+            student_ts = stu_forward.repeat(1, stu_forward.shape[1]).reshape(stu_forward.shape[0],
                                                                                    stu_forward.shape[1],
-                                                                                  stu_forward.shape[1])
-        diff_ts = exer_forward.repeat(1, exer_forward.shape[1]).reshape(exer_forward.shape[0],
+                                                                                   stu_forward.shape[1])
+
+            # get batch exercise data
+            diff_ts = exer_forward.repeat(1, exer_forward.shape[1]).reshape(exer_forward.shape[0],
                                                                                       exer_forward.shape[1],
                                                                                       exer_forward.shape[1])
-        # get batch knowledge concept data
-        knowledge_ts = knows_forward.repeat(student_ts.shape[0], 1).reshape(stu_forward.shape[0], knows_forward.shape[0],
-                                                                      knows_forward.shape[1])
+
+            # get batch knowledge concept data
+            knowledge_ts = knows_forward.repeat(stu_forward.shape[0], 1).reshape(stu_forward.shape[0],
+                                                                                   knows_forward.shape[0],
+                                                                                   knows_forward.shape[1])
+        else:
+            student_ts = stu_forward
+            diff_ts = exer_forward
+            knowledge_ts = knows_forward
 
         disc_ts = self.__disc_emb.weight
         self.__emb_map["mastery"] = student_ts

@@ -1,1 +1,0 @@
-from .mirt import MIRT

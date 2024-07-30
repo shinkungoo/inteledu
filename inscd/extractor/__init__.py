@@ -1,11 +1,15 @@
+from .cdmfkc import CDMFKC_EX
 from .default import Default
-from .ulcdf import ULCDF_Extractor
-from .lightgcn import LIGHTGCN_Extractor
-from .rcd import RCD_Extractor
+from .lightgcn import LightGCN_EX
+from .orcdf import ORCDF_EX
+from .rcd import RCD_EX
+from .scd import SCD_EX
 
 __all__ = [
+    "CDMFKC_EX",
     "Default",
-    "ULCDF_Extractor",
-    "LIGHTGCN_Extractor",
-    "RCD_Extractor"
+    "LightGCN_EX",
+    "ORCDF_EX",
+    "RCD_EX",
+    "SCD_EX"
 ]

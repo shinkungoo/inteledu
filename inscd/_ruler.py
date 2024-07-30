@@ -127,7 +127,7 @@ class _Ruler:
         return self.__method_map[item]
 
     def __call__(self, model, datahub, set_type: str, pred_r: list, metrics: list):
-        mastery_level = model.diagnose()
+        mastery_level = model.diagnose().detach().cpu().numpy()
         true_r = datahub.detach_labels(set_type)
         results = {}
         for metric in metrics:
