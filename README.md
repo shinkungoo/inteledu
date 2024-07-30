@@ -5,7 +5,7 @@
 
 East China Normal University
 
-<img src='docs/inscd.svg' width=700 />
+<img src='asset/inscd.svg' width=700 />
 </div>
 
 InsCD, namely Instant Cognitive Diagnosis (Chinese: 时诊), is a highly modularized python library for cognitive diagnosis in intelligent education systems. This library incorporates both traditional methods (e.g., solving IRT via statistics) and deep learning-based methods (e.g., modelling students and exercises via graph neural networks). 
