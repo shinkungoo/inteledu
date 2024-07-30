@@ -60,6 +60,7 @@ We incoporate classical, famous and state-of-the-art methods published or accept
 ### List of Models
 |Model|Release|Paper|
 |-----|------------|-----|
+|Item Response Theory (IRT)|1952|Frederic Lord. A Theory of Test Scores. _Psychometric Monographs_.|
 |Multidimentional Item Response Theory (MIRT)|2009|Mark D. Reckase. _Multidimensional Item Response Theory Models_.|
 |Neural Cognitive Diagnosis Model (NCDM)|2020|Fei Wang et al. Neural Cognitive Diagnosis for Intelligent Education Systems. _AAAI'20_.|
 |Item Response Ranking (IRR)|2021|Shiwei Tong et al. Item Response Ranking for Cognitive Diagnosis. _IJCAI'21_.|
