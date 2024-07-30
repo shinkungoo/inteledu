@@ -100,6 +100,12 @@ Contributors are arranged in alphabetical order by first name. We welcome more p
 
 Junhao Shen, Mingjia Li, Shuo Liu, Xin An, Yuanhao Liu
 
+## 🧐 TODO List for v1.2
+- [ ] Add DINA to the toolkit.
+- [ ] Add SymbolicCDM to the toolkit.
+- [ ] Add DCD to the toolkit.
+- [ ] Implement combination function as user-friendly interface.
+
 ## 🗞 Citation
 If this toolkit is helpful and can inspire you in your reseach or applications, please kindly cite as follows.
 
