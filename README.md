@@ -63,7 +63,6 @@ We incoporate classical, famous and state-of-the-art methods published or accept
 |Item Response Theory (IRT)|1952|Frederic Lord. A Theory of Test Scores. _Psychometric Monographs_.|
 |Multidimentional Item Response Theory (MIRT)|2009|Mark D. Reckase. _Multidimensional Item Response Theory Models_.|
 |Neural Cognitive Diagnosis Model (NCDM)|2020|Fei Wang et al. Neural Cognitive Diagnosis for Intelligent Education Systems. _AAAI'20_.|
-|Item Response Ranking (IRR)|2021|Shiwei Tong et al. Item Response Ranking for Cognitive Diagnosis. _IJCAI'21_.|
 |Relation Map-driven Cognitive Diagnosis Model (RCD)|2021|Weibo Gao et al. RCD: Relation Map Driven Cognitive Diagnosis for Intelligent Education Systems. _SIGIR'21_|
 |Knowledge-association Neural Cognitive Diagnosis (KaNCD)|2022|Fei Wang et al. NeuralCD: A General Framework for Cognitive Diagnosis. _TKDE_.|
 |Knowledge-sensed Cognitive Diagnosis Model (KSCD)|2022|Haiping Ma et al. Knowledge-Sensed Cognitive Diagnosis for Intelligent Education Platforms. _CIKM'22_.|
@@ -101,10 +100,8 @@ Contributors are arranged in alphabetical order by first name. We welcome more p
 Junhao Shen, Mingjia Li, Shuo Liu, Xin An, Yuanhao Liu
 
 ## 🧐 TODO List for v1.2
-- [ ] Add DINA to the toolkit.
+- [ ] Add DINA, IRR, SymbolicCDM and DCD to the toolkit.
 - [ ] Add HyperCDM to the toolkit once paper is released.
-- [ ] Add SymbolicCDM to the toolkit.
-- [ ] Add DCD to the toolkit.
 - [ ] Implement combination function as user-friendly interface.
 
 ## 🗞 Citation
