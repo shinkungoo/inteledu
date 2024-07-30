@@ -37,6 +37,7 @@ pip install inscd
 ### Quick Example
 The following code is a simple example of cognitive diagnosis implemented by inscd. We load build-in datasets, create cognitive diagnosis model, train model and show its performance:  
 ```python
+from inscd import listener
 from inscd.datahub import NeurIPS20
 from inscd.models.neural import NCDM
 
