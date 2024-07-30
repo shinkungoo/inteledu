@@ -60,7 +60,6 @@ We incoporate classical, famous and state-of-the-art methods published or accept
 ### List of Models
 |Model|Release|Paper|
 |-----|------------|-----|
-|Item Response Theory (IRT)|1952|Frederic Lord. A Theory of Test Scores. _Psychometric Monographs_.|
 |Deterministic Input, Noisy "And" Gate (DINA)|2008|Jimmy De La Torre. An Empirically Based Method of Q-matrix Validation for the DINA Model: Development and applications. _Journal of Educational Measurement_.|
 |Multidimentional Item Response Theory (MIRT)|2009|Mark D. Reckase. _Multidimensional Item Response Theory Models_.|
 |Neural Cognitive Diagnosis Model (NCDM)|2020|Fei Wang et al. Neural Cognitive Diagnosis for Intelligent Education Systems. _AAAI'20_.|
