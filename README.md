@@ -86,6 +86,7 @@ We incoporate classical, famous and state-of-the-art methods published or accept
 |`inscd.datahub.Math2`|2015|http://staff.ustc.edu.cn/%7Eqiliuql/data/math2015.rar|
 |`inscd.datahub.Matmat`|2019|https://github.com/adaptive-learning/matmat-web|
 |`inscd.datahub.NeurIPS20`|2020|https://eedi.com/projects/neurips-education-challenge|
+|`inscd.datahub.XES3G5M`|2023|https://github.com/ai4ed/XES3G5M|
 
 Note that we preprocess these datasets and filter invalid response logs. We will continuously update preprocessed datasets to foster the community.
 
