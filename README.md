@@ -19,6 +19,8 @@ InsCD, namely Instant Cognitive Diagnosis (Chinese: 时诊), is a highly modular
 </div>
 
 ## 📰 News 
+- [x] [2024.8.31] InsCD toolkit v1.2 is released.
+What's New: We implement two new models: symbolic cognitive diagnosis model (SymbolCD) and hypergraph cognitive diagnosis model (HyperCD)
 - [x] [2024.7.14] InsCD toolkit v1.1 is released and available for downloading.
 - [x] [2024.4.20] InsCD toolkit v1.0 is released.
 
@@ -70,7 +72,9 @@ We incoporate classical, famous and state-of-the-art methods published or accept
 |Cognitive Diagnosis Model Focusing on Knowledge Concepts (CDMFKC)|2022|Sheng Li et al. Cognitive Diagnosis Focusing on Knowledge Concepts. _CIKM'22_|
 |Q-augmented Causal Cognitive Diagnosis Model (QCCDM)|2023|Shuo Liu et al. QCCDM: A Q-Augmented Causal Cognitive Diagnosis Model for Student Learning. _ECAI'23_.|
 |Self-supervised Cognitive Diagnosis Model (SCD)|2023|Shanshan Wang et al. Self-Supervised Graph Learning for Long-Tailed Cognitive Diagnosis. _AAAI'23_.|
+|Symbolic Cognitive Diganosis Model (SymbolCD)|2024|Junhao Shen et al. Symbolic Cognitive Diagnosis via Hybrid Optimization for Intelligent Education Systems|
 |Oversmoothing-Resistant Cognitive Diagnosis Framework (ORCDF)|2024|Shuo Liu et al. ORCDF: An Oversmoothing-Resistant Cognitive Diagnosis Framework for Student Learning in Online Education Systems. _KDD'24_.|
+|Hypergraph Cognitive Diagnosis Model (HyperCDM)|2024|Junhao Shen et al. Capturing Homogeneous Influence among Students: Hypergraph Cognitive Diagnosis for Intelligent Education Systems. _KDD'24_|
 
 ### List of Build-in Datasets
 |Dataset|Release|Source|
@@ -99,11 +103,6 @@ os.environ['all_proxy'] = 'socks5://<IP address of proxy>:<Port of proxy>'
 Contributors are arranged in alphabetical order by first name. We welcome more people to participate in maintenance and improve the community of intelligent education.
 
 Junhao Shen, Mingjia Li, Shuo Liu, Xin An, Yuanhao Liu
-
-## 🧐 TODO List for v1.2
-- [ ] Add DINA, IRR, SymbolicCDM and DCD to the toolkit.
-- [ ] Add HyperCDM to the toolkit once paper is released.
-- [ ] Implement combination function as user-friendly interface.
 
 ## 🗞 Citation
 If this toolkit is helpful and can inspire you in your reseach or applications, please kindly cite as follows.
